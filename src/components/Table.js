@@ -1,61 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import "./styles.css";
 
 function Table(props) {
-  const [tableArray, setTableArray] = useState([]);
-  const [firstNameArray, setFirstNameArray] = useState([]);
-  const [lastNameArray, setLastNameArray] = useState([]);
-
-  useEffect(() => {
-    setTableArray(props.empArray);
-    console.log(tableArray);
-  }, [props.empArray, tableArray]);
-
-  function handleFirstSort() {
-    let firstName = tableArray.sort((a, b) =>
-      a.name.first > b.name.first ? 1 : -1
-    );
-    setFirstNameArray(firstName);
-    setTableArray(firstNameArray);
-    console.log(tableArray);
-  }
-  function handleLastSort() {
-    let lastName = tableArray.sort((a, b) =>
-      a.name.last > b.name.last ? 1 : -1
-    );
-    setLastNameArray(lastName);
-    setTableArray(lastNameArray);
-  }
-
-  // const sortLast = (props) => {
-  //   let lastNameArray = props.empArray.sort((a, b) =>
-  //     a.name.last > b.name.last ? 1 : -1
-  //   );
-  //   setTableArray(lastNameArray);
-  // };
-
   return (
-    <>
-      <button onClick={handleFirstSort}>Sort by First Name</button>
-      <button onClick={handleLastSort}>Sort by Last Name</button>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableArray.map((employees) => (
-            <tr key={employees.login.uuid}>
-              <td>{employees.name.first}</td>
-              <td>{employees.name.last}</td>
-              <td>{employees.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+    <table className="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <strong>Sort by:</strong>
+          </th>
+          <th scope="col">
+            <button
+              onClick={() => props.handleFirstSort()}
+              className="btn"
+              id="fname"
+            >
+              <strong>First Name</strong>
+            </button>
+            <button
+              onClick={() => props.handleLastSort()}
+              className="btn"
+              id="lname"
+            >
+              <strong>Last Name</strong>
+            </button>
+          </th>
+          <th scope="col">
+            <strong>Phone</strong>
+          </th>
+          <th scope="col">
+            <strong>Email</strong>
+          </th>
+          <th scope="col">
+            <button onClick={() => props.handleCitySort()} className="btn">
+              <strong>City</strong>
+            </button>
+          </th>
+          <th scope="col">
+            <button onClick={() => props.handleTheStateSort()} className="btn">
+              <strong>State</strong>
+            </button>
+          </th>
+          <th scope="col">
+            <button onClick={() => props.handleReset()} className="btn">
+              <strong>Reset your Search</strong>
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>{props.children}</tbody>
+    </table>
   );
 }
 
