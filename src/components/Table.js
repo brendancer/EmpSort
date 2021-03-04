@@ -11,14 +11,16 @@ function Table(props) {
           </th>
           <th scope="col">
             <button
-              onClick={() => props.handleSort("name.first")}
+              onClick={() => props.handleFirstSort()}
               className="btn"
+              id="fname"
             >
               <strong>First Name</strong>
             </button>
             <button
-              onClick={() => props.handleSort("name[first]")}
+              onClick={() => props.handleLastSort()}
               className="btn"
+              id="lname"
             >
               <strong>Last Name</strong>
             </button>
@@ -30,19 +32,18 @@ function Table(props) {
             <strong>Email</strong>
           </th>
           <th scope="col">
-            <button
-              onClick={() => props.handleSort("location.city")}
-              className="btn"
-            >
+            <button onClick={() => props.handleCitySort()} className="btn">
               <strong>City</strong>
             </button>
           </th>
           <th scope="col">
-            <button
-              onClick={() => props.handleSort("location.state")}
-              className="btn"
-            >
+            <button onClick={() => props.handleTheStateSort()} className="btn">
               <strong>State</strong>
+            </button>
+          </th>
+          <th scope="col">
+            <button onClick={() => props.handleReset()} className="btn">
+              <strong>Reset your Search</strong>
             </button>
           </th>
         </tr>
