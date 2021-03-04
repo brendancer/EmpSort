@@ -66,9 +66,9 @@ function App() {
     setEmpArr(theStateArray);
     return setEmpArr(originalArray);
   }
-  // function handleReset() {
-  //   window.location.reload(false);
-  // }
+  function handleReset() {
+    window.location.reload(false);
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();

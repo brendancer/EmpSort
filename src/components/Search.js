@@ -5,7 +5,7 @@ function Search(props) {
     <input
       className="form-control mr-sm-2"
       type="search"
-      placeholder="Search"
+      placeholder="Search(Case Sensitive)"
       aria-label="Search"
       onChange={props.handleSearch}
     />
