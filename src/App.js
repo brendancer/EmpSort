@@ -3,6 +3,7 @@ import API from "./utils/API";
 import Table from "./components/Table";
 import EmployeeRow from "./components/EmployeeRow";
 import Search from "./components/Search";
+import Header from "./components/Header";
 
 function App() {
   const [empArr, setEmpArr] = useState([]);
@@ -23,12 +24,7 @@ function App() {
     const sortDown = sortDesc ? -1 : 1;
     let arr = [];
     switch (sortType) {
-      case "picture[thumbnail]":
-        arr = [...empSortArr].sort((a, b) =>
-          a.picture.thumbnail < b.picture.thumbnail ? sortUp : sortDown
-        );
-        break;
-      case "name[first]":
+      case "name.first":
         arr = [...empSortArr].sort((a, b) =>
           a.name.first < b.name.first ? sortUp : sortDown
         );
@@ -47,10 +43,7 @@ function App() {
     arr = [...empSortArr].filter((emp) => {
       return (
         emp.name.first.includes(searchFilter) ||
-        emp.name.last.includes(searchFilter) ||
-        emp.phone.includes(searchFilter) ||
-        emp.email.includes(searchFilter) ||
-        emp.dob.date.includes(searchFilter)
+        emp.name.last.includes(searchFilter)
       );
     });
     setEmpSortArr(arr);
@@ -77,16 +70,13 @@ function App() {
 
   return (
     <>
+      <Header />
       <Search handleSearch={handleSearch} />
-      {!empSortArr.length === 0 ? (
-        <h1> Loading</h1>
-      ) : (
-        <Table handleSort={handleSort}>
-          {empSortArr.map((emp) => {
-            return <EmployeeRow key={emp.login.uuid} emp={emp} />;
-          })}
-        </Table>
-      )}
+      <Table handleSort={handleSort}>
+        {empSortArr.map((emp) => {
+          return <EmployeeRow key={emp.login.uuid} emp={emp} />;
+        })}
+      </Table>
     </>
   );
 }

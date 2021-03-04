@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css";
 
 function Table(props) {
   return (
@@ -6,37 +7,42 @@ function Table(props) {
       <thead>
         <tr>
           <th scope="col">
-            <button
-              onClick={() => props.handleSort("picture[thumbnail]")}
-              className="btn"
-            >
-              <strong>Image</strong>
-            </button>
+            <strong>Sort by:</strong>
           </th>
           <th scope="col">
+            <button
+              onClick={() => props.handleSort("name.first")}
+              className="btn"
+            >
+              <strong>First Name</strong>
+            </button>
             <button
               onClick={() => props.handleSort("name[first]")}
               className="btn"
             >
-              <strong>Name</strong>
+              <strong>Last Name</strong>
             </button>
           </th>
           <th scope="col">
-            <button onClick={() => props.handleSort("phone")} className="btn">
-              <strong>Phone</strong>
-            </button>
+            <strong>Phone</strong>
           </th>
           <th scope="col">
-            <button onClick={() => props.handleSort("email")} className="btn">
-              <strong>Email</strong>
+            <strong>Email</strong>
+          </th>
+          <th scope="col">
+            <button
+              onClick={() => props.handleSort("location.city")}
+              className="btn"
+            >
+              <strong>City</strong>
             </button>
           </th>
           <th scope="col">
             <button
-              onClick={() => props.handleSort("dob[date]")}
+              onClick={() => props.handleSort("location.state")}
               className="btn"
             >
-              <strong>DOB</strong>
+              <strong>State</strong>
             </button>
           </th>
         </tr>
